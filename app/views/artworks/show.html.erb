@@ -1,0 +1,42 @@
+<p>
+  <strong>Name:</strong>
+  <%= @artwork.name %>
+</p>
+
+<p>
+  <strong>Dimension:</strong>
+  <%= @artwork.dimension %>
+</p>
+
+<h2>Eventi</h2>
+<% @artwork.events.each do |event| %>
+  <p>
+    <strong>Nome:</strong>
+    <%= event.name %>
+  </p>
+
+  <p>
+    <strong>Sito:</strong>
+    <%= event.site %>
+  </p>
+<% end %>
+
+
+<h2>Aggiungi un evento:</h2>
+<%= form_for([@artwork, @artwork.events.build]) do |f| %>
+  <p>
+    <%= f.label 'Nome' %><br>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label 'Sito' %><br>
+    <%= f.text_area :site %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
+
+<%= link_to 'Indietro', artworks_path %>
+<%= link_to 'Modifica', edit_artwork_path(@artwork) %>
