@@ -1,0 +1,36 @@
+<h1>Opere</h1>
+
+<div class="row">
+
+  <div class="col-md-2 menu-container">
+    <ul>
+      <li><%= link_to 'Aggiungi nuova opera', new_artwork_path %></li>
+    </ul>
+  </div>
+
+  <div class="col-md-10 artworks-container">
+
+ <div class="container row">
+    <% @artworks.each do |artwork| %>
+
+    <div class="col-lg-4">
+      <h2><%= artwork.name %></h2>
+      <p><%= artwork.dimension %></p>
+       <%= link_to 'Show', artwork_path(artwork) %>
+       <%= link_to 'Edit', edit_artwork_path(artwork) %>
+       <%= link_to 'Destroy', artwork_path(artwork),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %>
+    </div>
+
+    <% end %>
+
+ </div>
+
+
+
+
+  </div>
+</div>
+
+
