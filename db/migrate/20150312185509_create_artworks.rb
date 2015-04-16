@@ -8,7 +8,10 @@ class CreateArtworks < ActiveRecord::Migration
       t.boolean :production
       t.integer :quantity
 
+
       t.timestamps null: false
     end
+
+
   end
 end
