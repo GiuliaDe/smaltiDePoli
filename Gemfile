@@ -29,6 +29,8 @@ group :development, :test do
   #testing framework
   gem 'rspec-rails'
 
+  #testing, create model instances
+  gem 'factory_girl_rails'
 
 end
 
