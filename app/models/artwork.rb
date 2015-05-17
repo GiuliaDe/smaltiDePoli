@@ -2,6 +2,8 @@ class Artwork < ActiveRecord::Base
 
   default_scope { order('updated_at DESC')}
 
+  has_many :artists, through: :collaborations
+  has_many :collaborations
 
   validates :name, presence: true
 

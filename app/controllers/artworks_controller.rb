@@ -59,7 +59,7 @@ class ArtworksController < ApplicationController
 
   private
     def artwork_params
-      params.require(:artwork).permit(:name, :dimension)
+      params.require(:artwork).permit(:name, :dimension, :description, :production, :notes, :type, :technique, :quantity, :linkIUAV, :infdate, :supdate, :dateexact)
     end
 
 
