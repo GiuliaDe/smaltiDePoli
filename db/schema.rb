@@ -11,20 +11,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150312185509) do
+ActiveRecord::Schema.define(version: 20150517135904) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "artists", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "artworks", force: :cascade do |t|
     t.string   "name"
-    t.text     "dimension"
+    t.string   "dimension"
     t.text     "description"
     t.text     "notes"
     t.boolean  "production"
     t.integer  "quantity"
+    t.string   "type"
+    t.string   "technique"
+    t.string   "linkIUAV"
+    t.date     "infdate"
+    t.date     "supdate"
+    t.boolean  "dateexact"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  create_table "collaborations", id: false, force: :cascade do |t|
+    t.integer "artwork_id"
+    t.integer "artist_id"
+    t.text    "kind"
+  end
+
+  add_index "collaborations", ["artist_id"], name: "index_collaborations_on_artist_id", using: :btree
+  add_index "collaborations", ["artwork_id"], name: "index_collaborations_on_artwork_id", using: :btree
 
 end
