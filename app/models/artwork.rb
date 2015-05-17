@@ -1,5 +1,7 @@
 class Artwork < ActiveRecord::Base
 
+  default_scope { order('updated_at DESC')}
+
 
   validates :name, presence: true
 
@@ -13,12 +15,12 @@ class Artwork < ActiveRecord::Base
   validates :quantity, numericality: true, allow_nil: true
 
 
-  validates :type, inclusion: { in: ['sbalzo', 'disegno', 'dipinto', 'pannello', 'scultura', 'ciclo pannelli', 'Calice Pisside' , 'piattone', 'mobile' , 'famiglia' , 'cartone' , 'lastra' , 'specchio' , 'vassoio',  'lampada' , 'vaso'],  message: "%{value} non e' un tipo valido" }, allow_nil: true
+  validates :type, inclusion: { in: ['sbalzo', 'disegno', 'dipinto', 'pannello', 'scultura', 'ciclo pannelli', 'Calice Pisside' , 'piattone', 'mobile' , 'famiglia' , 'cartone' , 'lastra' , 'specchio' , 'vassoio',  'lampada' , 'vaso'],  message: "%{value} non e' un tipo valido" }, allow_blank: true
   validates :technique, inclusion: { in: ['rame' ,'alpacca' ,'rame sbalzato e patinato' ,'argento sbalzato e patinato' ,'argento o rame' ,'olio su tavola' ,'carboncino', 'olio' ,'smalto su rame', 'gessetto' ,'legno e smalto su rame' ,'legno' ,'smalto su rame e ferro', 'smalto su rame e acciaio' ,'smalto su rame e argento'],
-                                     message: "%{value} non e' una tecnica valida" }, allow_nil: true
+                                     message: "%{value} non e' una tecnica valida" }, allow_blank: true
 
-  validates_date :infdate, :between => [Date.new(1900,1,1) , Date.new(2000,1,1)], allow_nil: true
-  validates_date :supdate, :between => [Date.new(1900,1,1) , Date.new(2000,1,1)], allow_nil: true
+  validates_date :infdate, :between => [Date.new(1905,1,1) , Date.new(1996,1,1)], allow_nil: true
+  validates_date :supdate, :between => [Date.new(1905,1,1) , Date.new(1996,1,1)], allow_nil: true
 
   validate :infdate_before_supdate
 

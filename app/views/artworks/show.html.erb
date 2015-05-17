@@ -1,42 +1,65 @@
-<p>
-  <strong>Name:</strong>
-  <%= @artwork.name %>
-</p>
 
-<p>
-  <strong>Dimension:</strong>
-  <%= @artwork.dimension %>
-</p>
+<div class="row">
 
-<h2>Eventi</h2>
-<% @artwork.events.each do |event| %>
-  <p>
-    <strong>Nome:</strong>
-    <%= event.name %>
-  </p>
+  <div class="col-md-2 menu-container">
+    <%= render 'left_menu' %>
+  </div>
 
-  <p>
-    <strong>Sito:</strong>
-    <%= event.site %>
-  </p>
-<% end %>
+  <div class="col-md-10 artworks-container">
+
+    <p>
+      <strong>Nome:</strong>
+      <%= @artwork.name %>
+    </p>
+
+    <p>
+      <strong>Dimensione:</strong>
+      <%= @artwork.dimension %>
+    </p>
+
+    <p>
+      <strong>Descrizione:</strong>
+      <%= @artwork.description %>
+    </p>
+
+    <p>
+      <strong>Note:</strong>
+      <%= @artwork.notes %>
+    </p>
+
+    <p>
+      <strong>Produzione?</strong>
+      <%= translate(@artwork.production.class) %>
+    </p>
+    <p>
+      <strong>Quantità</strong>
+      <%= @artwork.quantity %>
+    </p>
+    <p>
+      <strong>Tipo:</strong>
+      <%= @artwork.type %>
+    </p>
+    <p>
+      <strong>Tecnica:</strong>
+      <%= @artwork.technique %>
+    </p>
+    <p>
+      <strong>Link IUAV</strong>
+      <%= @artwork.linkIUAV %>
+    </p>
+    <p>
+    <strong>Periodo: da</strong>
+      <%= @artwork.infdate.year %>
+    <strong> a </strong>
+      <%= @artwork.supdate.year %>
+    </p>
+    <p>
+      <strong>Data esatta?</strong>
+      <%= translate(@artwork.dateexact.class) %>
+    </p>
 
 
-<h2>Aggiungi un evento:</h2>
-<%= form_for([@artwork, @artwork.events.build]) do |f| %>
-  <p>
-    <%= f.label 'Nome' %><br>
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label 'Sito' %><br>
-    <%= f.text_area :site %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
+    <%= link_to 'Indietro', artworks_path %>
+    <%= link_to 'Modifica', edit_artwork_path(@artwork) %>
 
-
-<%= link_to 'Indietro', artworks_path %>
-<%= link_to 'Modifica', edit_artwork_path(@artwork) %>
+</div>

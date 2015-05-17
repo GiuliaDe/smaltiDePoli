@@ -15,13 +15,51 @@
   <% end %>
 
   <p>
-    <%= f.label 'Nome' %><br>
+    <%= f.label 'Nome' %>
     <%= f.text_field :name %>
   </p>
 
   <p>
-    <%= f.label 'Dimensione' %><br>
+    <%= f.label 'Dimensione' %>
     <%= f.text_area :dimension %>
+  </p>
+  <p>
+    <%= f.label 'Descrizione' %>
+    <%= f.text_area :description %>
+  </p>
+    <p>
+    <%= f.label 'Note' %>
+    <%= f.text_area :notes %>
+  </p>
+  <p>
+    <%= f.check_box :production %>
+    <%= label_tag(:production, "Opera produzione?") %>
+  </p>
+  <p>
+    <%= f.label 'Quantità' %>
+    <%= f.text_area :quantity %>
+  </p>
+  <p>
+    <%= f.label 'Tipo' %>
+    <%= f.text_area :type %>
+  </p>
+  <p>
+    <%= f.label 'Tecnica' %>
+    <%= f.select(:technique, options_for_select([['rame','rame'],['alpacca','alpacca'],['olio','olio']]), include_blank: true) %>
+  </p>
+  <p>
+    <%= f.label 'Link IUAV' %>
+    <%= f.text_area :linkIUAV %>
+  </p>
+  <p>
+    <%= f.label 'Da ' %>
+    <%= f.date_select(:infdate, start_year: 1905, end_year: 1996 , discard_day: true,discard_month: true,) %>
+     <%= f.label 'a ' %>
+     <%= f.date_select(:supdate, start_year: 1905, end_year: 1996 , discard_day: true,discard_month: true,) %>
+  </p>
+  <p>
+    <%= f.check_box :dateexact %>
+    <%= label_tag(:dateexact, "Data esatta?") %>
   </p>
 
   <p>
