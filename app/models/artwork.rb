@@ -1,6 +1,13 @@
 class Artwork < ActiveRecord::Base
 
-  default_scope { order('updated_at DESC')}
+  TYPOLOGIES = ['disegno' , 'sbalzo', 'dipinto' , 'mobile' , 'scultura' , 'pannello' , 'animale' , 'vaschetta' , 'ciotola' , 'vaso' , 'maniglia' ,'oggetti vari']
+  TECHNIQUES = ['alpacca sbalzata' , 'argento sbalzato' , 'carboncino su carta' , 'gessetto' , 'matita su carta' , 'legno' , 'olio su tela' , 'olio su tavola' ,'rame' , 'rame sbalzato' ,'smalto su rame' ,'smalto e argento su rame' ,'smalto su ferro' ,'smalto su argento' ,'smalto su oro' ,'legno e smalto su rame' ,'ferro e smalto su rame' , 'acciaio e smalto su rame' , 'ottone e smalto su rame' , 'stucco e smalto su rame']
+
+  FIRST_DATE = Date.new(1905,1,1)
+  LAST_DATE = Date.new(1996,1,1)
+
+  scope :last_modified_first, -> {order('updated_at DESC')}
+
 
   has_many :artists, through: :collaborations
   has_many :collaborations
@@ -11,29 +18,34 @@ class Artwork < ActiveRecord::Base
   validates :dimension, length: { maximum: 50 }
   validates :description, length: { maximum: 400 }
   validates :notes, length: { maximum: 400 }
-  validates :type, length: { maximum: 20 }
+  validates :typology, length: { maximum: 20 }
   validates :technique, length: { maximum: 50 }
 
-  validates :quantity, numericality: true, allow_nil: true
+  validates :quantity, numericality: { only_integer: true , greater_than_or_equal_to: 0}, allow_nil: true
 
 
-  validates :type, inclusion: { in: ['sbalzo', 'disegno', 'dipinto', 'pannello', 'scultura', 'ciclo pannelli', 'Calice Pisside' , 'piattone', 'mobile' , 'famiglia' , 'cartone' , 'lastra' , 'specchio' , 'vassoio',  'lampada' , 'vaso'],  message: "%{value} non e' un tipo valido" }, allow_blank: true
-  validates :technique, inclusion: { in: ['rame' ,'alpacca' ,'rame sbalzato e patinato' ,'argento sbalzato e patinato' ,'argento o rame' ,'olio su tavola' ,'carboncino', 'olio' ,'smalto su rame', 'gessetto' ,'legno e smalto su rame' ,'legno' ,'smalto su rame e ferro', 'smalto su rame e acciaio' ,'smalto su rame e argento'],
-                                     message: "%{value} non e' una tecnica valida" }, allow_blank: true
-
-  validates_date :infdate, :between => [Date.new(1905,1,1) , Date.new(1996,1,1)], allow_nil: true
-  validates_date :supdate, :between => [Date.new(1905,1,1) , Date.new(1996,1,1)], allow_nil: true
-
-  validate :infdate_before_supdate
+  validates :typology, inclusion: { in: TYPOLOGIES,  message: "%{value} non e' un tipo valido" }, allow_blank: true
+  validates :technique, inclusion: { in: TECHNIQUES, message: "%{value} non e' una tecnica valida" }, allow_blank: true
 
 
+  validate :infdate_supdate_validity
 
-  def infdate_before_supdate
 
-    if infdate && supdate
-      validates_date :supdate, :on_or_after => :infdate, :on_or_after_message => "La data finale dev'essere successiva alla data iniziale"
+  private
+
+  def infdate_supdate_validity
+
+    if infdate && (infdate < FIRST_DATE || infdate > LAST_DATE)
+      errors.add(:infdate, "La data inferiore deve essere tra 1905 e 1996")
     end
 
+    if supdate && (supdate < FIRST_DATE || supdate > LAST_DATE)
+      errors.add(:supdate, "La data inferiore deve essere tra 1905 e 1996")
+    end
+
+    if infdate && supdate && infdate > supdate
+        errors.add(:base , "La data finale dev'essere successiva alla data iniziale")
+    end
   end
 
 

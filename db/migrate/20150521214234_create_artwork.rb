@@ -1,13 +1,14 @@
-class CreateArtworks < ActiveRecord::Migration
+class CreateArtwork < ActiveRecord::Migration
   def change
     create_table :artworks do |t|
+
       t.string :name
       t.string :dimension
       t.text :description
       t.text :notes
       t.boolean :production
       t.integer :quantity
-      t.string :type
+      t.string :typology
       t.string :technique
       t.string :linkIUAV
       t.date :infdate
@@ -20,7 +21,5 @@ class CreateArtworks < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-
-
   end
 end

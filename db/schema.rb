@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150517135904) do
+ActiveRecord::Schema.define(version: 20150521214437) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20150517135904) do
     t.text     "notes"
     t.boolean  "production"
     t.integer  "quantity"
-    t.string   "type"
+    t.string   "typology"
     t.string   "technique"
     t.string   "linkIUAV"
     t.date     "infdate"
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20150517135904) do
   create_table "collaborations", id: false, force: :cascade do |t|
     t.integer "artwork_id"
     t.integer "artist_id"
-    t.text    "kind"
+    t.text    "typology"
   end
 
   add_index "collaborations", ["artist_id"], name: "index_collaborations_on_artist_id", using: :btree

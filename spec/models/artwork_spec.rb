@@ -10,7 +10,7 @@ RSpec.describe Artwork, type: :model do
     expect(@artwork).to be_valid
   end
 
-
+describe "validations" do
   it 'is invalid without a name' do
     expect(FactoryGirl.build(:artwork, name: nil)).not_to be_valid
   end
@@ -29,15 +29,15 @@ RSpec.describe Artwork, type: :model do
   end
 
   it 'is invalid if notes length is too long' do
-    expect(FactoryGirl.build(:artwork, type: "esistono diverse ..."*40)).not_to be_valid
+    expect(FactoryGirl.build(:artwork, notes: "esistono diverse ..."*40)).not_to be_valid
   end
 
-  it 'is invalid if type length is too long' do
-    expect(FactoryGirl.build(:artwork, type: "sbalzo"*10)).not_to be_valid
+  it 'is invalid if typology length is too long' do
+    expect(FactoryGirl.build(:artwork, typology: "sbalzo"*10)).not_to be_valid
   end
 
   it 'is invalid if technique length is too long' do
-    expect(FactoryGirl.build(:artwork, type: "rame"*20)).not_to be_valid
+    expect(FactoryGirl.build(:artwork, technique: "rame"*20)).not_to be_valid
   end
 
   it 'is invalid if quantity is not a number' do
@@ -45,17 +45,17 @@ RSpec.describe Artwork, type: :model do
   end
 
 
-  it 'is invalid if type is not in defined list' do
-    expect(FactoryGirl.build(:artwork, type: "oro")).not_to be_valid
+  it 'is invalid if typology is not in defined list' do
+    expect(FactoryGirl.build(:artwork, typology: "oro")).not_to be_valid
   end
 
-  it 'is valid if type is defined in list' do
-    expect(FactoryGirl.build(:artwork, type: "sbalzo")).to be_valid
+  it 'is valid if typology is defined in list' do
+    expect(FactoryGirl.build(:artwork, typology: "sbalzo")).to be_valid
   end
 
 
   it 'is invalid if technique is defined in list' do
-    expect(FactoryGirl.build(:artwork, type: "prova")).not_to be_valid
+    expect(FactoryGirl.build(:artwork, technique: "prova")).not_to be_valid
   end
 
 
@@ -90,5 +90,7 @@ RSpec.describe Artwork, type: :model do
   it 'is invalid is superior date is before inferior date' do
     expect(FactoryGirl.build(:artwork, infdate: Date.new(1940,1,1), supdate: Date.new(1935,1,1))).not_to be_valid
   end
+
+end
 
 end

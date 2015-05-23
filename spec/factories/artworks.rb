@@ -6,7 +6,7 @@ FactoryGirl.define do
     notes 'opera datata..'
     production true
     quantity 1
-    type 'sbalzo'
+    typology 'sbalzo'
     technique 'rame'
     linkIUAV 'Homepage IUAV'
     infdate Date.new(1954,1,1)

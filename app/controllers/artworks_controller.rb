@@ -1,11 +1,13 @@
 class ArtworksController < ApplicationController
 
 
+  before_filter :load_form_constraints,  on: [:new , :edit]
+
 
 
   def index
 
-    @artworks = Artwork.all
+    @artworks = Artwork.last_modified_first
 
   end
 
@@ -20,6 +22,7 @@ class ArtworksController < ApplicationController
 
   def edit
     @artwork = Artwork.find(params[:id])
+
   end
 
 
@@ -59,8 +62,15 @@ class ArtworksController < ApplicationController
 
   private
     def artwork_params
-      params.require(:artwork).permit(:name, :dimension, :description, :production, :notes, :type, :technique, :quantity, :linkIUAV, :infdate, :supdate, :dateexact)
+      params.require(:artwork).permit(:name, :dimension, :description, :production, :notes, :typology, :technique, :quantity, :linkIUAV, :infdate, :supdate, :dateexact)
     end
+
+    def load_form_constraints
+      @available_typologies = Artwork::TYPOLOGIES
+      @available_techniques = Artwork::TECHNIQUES
+      @limit_firstyear = Artwork::FIRST_DATE
+      @limit_lastyear = Artwork::LAST_DATE
+   end
 
 
 end

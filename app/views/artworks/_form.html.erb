@@ -3,8 +3,7 @@
   <% if @artwork.errors.any? %>
     <div id="error_explanation">
       <h2>
-        <%= pluralize(@artwork.errors.count, "error") %> prohibited
-        this artwork from being saved:
+        <%= pluralize(@artwork.errors.count, "errore") %> non è possibile salvare l'opera:
       </h2>
       <ul>
         <% @artwork.errors.full_messages.each do |msg| %>
@@ -41,11 +40,11 @@
   </p>
   <p>
     <%= f.label 'Tipo' %>
-    <%= f.text_area :type %>
+    <%= f.select(:typology, options_for_select(@available_typologies), include_blank: true) %>
   </p>
   <p>
     <%= f.label 'Tecnica' %>
-    <%= f.select(:technique, options_for_select([['rame','rame'],['alpacca','alpacca'],['olio','olio']]), include_blank: true) %>
+    <%= f.select(:technique, options_for_select(@available_techniques), include_blank: true) %>
   </p>
   <p>
     <%= f.label 'Link IUAV' %>
@@ -53,9 +52,9 @@
   </p>
   <p>
     <%= f.label 'Da ' %>
-    <%= f.date_select(:infdate, start_year: 1905, end_year: 1996 , discard_day: true,discard_month: true,) %>
-     <%= f.label 'a ' %>
-     <%= f.date_select(:supdate, start_year: 1905, end_year: 1996 , discard_day: true,discard_month: true,) %>
+    <%= f.date_select(:infdate, start_year: @limit_firstyear.year, end_year: @limit_lastyear.year , discard_day: true,discard_month: true,) %>
+    <%= f.label 'a ' %>
+    <%= f.date_select(:supdate, start_year: @limit_firstyear.year, end_year: @limit_lastyear.year , discard_day: true,discard_month: true,) %>
   </p>
   <p>
     <%= f.check_box :dateexact %>
