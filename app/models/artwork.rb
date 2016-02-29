@@ -1,7 +1,7 @@
 class Artwork < ActiveRecord::Base
 
   TYPOLOGIES = ['disegno' , 'sbalzo', 'dipinto' , 'mobile' , 'scultura' , 'pannello' , 'animale' , 'vaschetta' , 'ciotola' , 'vaso' , 'maniglia' ,'oggetti vari']
-  TECHNIQUES = ['alpacca sbalzata' , 'argento sbalzato' , 'carboncino su carta' , 'gessetto' , 'matita su carta' , 'legno' , 'olio su tela' , 'olio su tavola' ,'rame' , 'rame sbalzato' ,'smalto su rame' ,'smalto e argento su rame' ,'smalto su ferro' ,'smalto su argento' ,'smalto su oro' ,'legno e smalto su rame' ,'ferro e smalto su rame' , 'acciaio e smalto su rame' , 'ottone e smalto su rame' , 'stucco e smalto su rame']
+  TECHNIQUES = ['alpacca sbalzata' , 'argento sbalzato' , 'carboncino su carta' , 'gessetto' , 'matita su carta' , 'legno' , 'olio su tela' , 'olio su tavola' ,'rame' , 'rame sbalzato' ,'smalto su rame' ,'smalto e argento su rame' ,'smalto su ferro' ,'smalto su argento' ,'smalto su oro' ,'legno e smalto su rame' ,'ferro e smalto su rame' , 'acciaio e smalto su rame' , 'ottone e smalto su rame' , 'stucco e smalto su rame', 'olio, supporto da determinare']
 
   FIRST_DATE = Date.new(1905,1,1)
   LAST_DATE = Date.new(1996,1,1)
