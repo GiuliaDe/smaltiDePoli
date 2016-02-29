@@ -5,11 +5,11 @@ class ArtworksController < ApplicationController
 
 
 
-  def index
 
-    @artworks = Artwork.last_modified_first
+def index
+  @artworks = Artwork.filter(params.slice(:by_name, :by_dimension))
 
-  end
+end
 
   def show
     @artwork = Artwork.find(params[:id])

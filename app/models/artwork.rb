@@ -1,5 +1,7 @@
 class Artwork < ActiveRecord::Base
 
+  include Filterable
+
   TYPOLOGIES = ['disegno' , 'sbalzo', 'dipinto' , 'mobile' , 'scultura' , 'pannello' , 'animale' , 'vaschetta' , 'ciotola' , 'vaso' , 'maniglia' ,'oggetti vari']
   TECHNIQUES = ['alpacca sbalzata' , 'argento sbalzato' , 'carboncino su carta' , 'gessetto' , 'matita su carta' , 'legno' , 'olio su tela' , 'olio su tavola' ,'rame' , 'rame sbalzato' ,'smalto su rame' ,'smalto e argento su rame' ,'smalto su ferro' ,'smalto su argento' ,'smalto su oro' ,'legno e smalto su rame' ,'ferro e smalto su rame' , 'acciaio e smalto su rame' , 'ottone e smalto su rame' , 'stucco e smalto su rame', 'olio, supporto da determinare']
 
@@ -8,6 +10,8 @@ class Artwork < ActiveRecord::Base
 
   scope :last_modified_first, -> {order('updated_at DESC')}
 
+  scope :by_name, ->(name) { where("name like ?", "%#{name}%")}
+  scope :by_dimension, ->(dimension) { where("dimension like ?", "%#{dimension}%") }
 
   has_many :artists, through: :collaborations
   has_many :collaborations
