@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150521214437) do
+ActiveRecord::Schema.define(version: 20160409150305) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,4 +49,6 @@ ActiveRecord::Schema.define(version: 20150521214437) do
   add_index "collaborations", ["artist_id"], name: "index_collaborations_on_artist_id", using: :btree
   add_index "collaborations", ["artwork_id"], name: "index_collaborations_on_artwork_id", using: :btree
 
+  add_foreign_key "collaborations", "artists"
+  add_foreign_key "collaborations", "artworks"
 end
