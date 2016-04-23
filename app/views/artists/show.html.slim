@@ -1,0 +1,12 @@
+.row
+  .col-md-2.menu-container
+    = render 'left_menu'
+  .col-md-10.artworks-container
+    p
+      strong Nome:
+      = @artist.name
+    p
+      strong Descrizione:
+      = @artist.description
+    = link_to 'Indietro', artists_path
+    = link_to 'Modifica', edit_artist_path(@artist)

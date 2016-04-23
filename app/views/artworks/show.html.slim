@@ -1,0 +1,41 @@
+.row
+  .col-md-2.menu-container
+    = render 'left_menu'
+  .col-md-10.artworks-container
+    p
+      strong Nome:
+      = @artwork.name
+    p
+      strong Dimensione:
+      = @artwork.dimension
+    p
+      strong Descrizione:
+      = @artwork.description
+    p
+      strong Note:
+      = @artwork.notes
+    p
+      strong Produzione?
+      = translate(@artwork.production.class)
+    p
+      strong Quantità
+      = @artwork.quantity
+    p
+      strong Tipo:
+      = @artwork.typology
+    p
+      strong Tecnica:
+      = @artwork.technique
+    p
+      strong Link IUAV
+      = @artwork.linkIUAV
+    p
+      strong Periodo: da
+      = @artwork.infdate.year
+      strong a
+      = @artwork.supdate.year
+    p
+      strong Data esatta?
+      = translate(@artwork.dateexact.class)
+    = link_to 'Indietro', artworks_path
+    = link_to 'Modifica', edit_artwork_path(@artwork)

@@ -1,0 +1,15 @@
+h1 Opere
+.row
+  .col-md-2.menu-container
+    = render 'left_menu'
+  .col-md-10.artworks-container
+    .container.row
+      - @artworks.each do |artwork|
+        .col-lg-4.artworks-panel
+          h2= artwork.name
+          p= artwork.dimension
+          = link_to 'Mostra', artwork_path(artwork)
+          = link_to 'Modifica', edit_artwork_path(artwork)
+          = link_to 'Elimina', artwork_path(artwork),
+            method: :delete,
+            data: { confirm: "Sei sicuro di voler eliminare l'oggetto?" }

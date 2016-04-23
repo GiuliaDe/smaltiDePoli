@@ -1,0 +1,15 @@
+h1 Artisti
+.row
+  .col-md-2.menu-container
+    = render 'left_menu'
+  .col-md-10.artworks-container
+    .container.row
+      - @artists.each do |artist|
+        .col-lg-4.artworks-panel
+          h2= artist.name
+          p= artist.description
+          = link_to 'Mostra', artist_path(artist)
+          = link_to 'Modifica', edit_artist_path(artist)
+          = link_to 'Elimina', artist_path(artist),
+            method: :delete,
+            data: { confirm: "Sei sicuro di voler eliminare?" }

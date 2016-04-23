@@ -42,6 +42,8 @@ group :development, :test do
   #testing, create model instances
   gem 'factory_girl_rails'
 
+  #slim template for views
+  gem 'slim-rails'
 
 end
 

@@ -1,0 +1,46 @@
+= form_for @artwork do |f|
+  - if @artwork.errors.any?
+    #error_explanation
+      h2
+        = pluralize(@artwork.errors.count, "errore")
+        | non è possibile salvare l'opera:
+      ul
+        - @artwork.errors.full_messages.each do |msg|
+          li= msg
+  p
+    = f.label 'Nome'
+    = f.text_field :name
+  p
+    = f.label 'Dimensione'
+    = f.text_area :dimension
+  p
+    = f.label 'Descrizione'
+    = f.text_area :description
+  p
+    = f.label 'Note'
+    = f.text_area :notes
+  p
+    = f.check_box :production
+    = label_tag(:production, "Opera produzione?")
+  p
+    = f.label 'Quantità'
+    = f.text_area :quantity
+  p
+    = f.label 'Tipo'
+    = f.select(:typology, options_for_select(@available_typologies, :selected => @artwork.typology), include_blank: true)
+  p
+    = f.label 'Tecnica'
+    = f.select(:technique, options_for_select(@available_techniques, :selected => @artwork.technique), include_blank: true)
+  p
+    = f.label 'Link IUAV'
+    = f.text_area :linkIUAV
+  p
+    = f.label 'Da '
+    = f.date_select(:infdate, start_year: @limit_firstyear.year, end_year: @limit_lastyear.year , discard_day: true,discard_month: true,)
+    = f.label 'a '
+    = f.date_select(:supdate, start_year: @limit_firstyear.year, end_year: @limit_lastyear.year , discard_day: true,discard_month: true,)
+  p
+    = f.check_box :dateexact
+    = label_tag(:dateexact, "Data esatta?")
+  p
+    = f.submit "Salva", class: "btn btn-success btn-sm"

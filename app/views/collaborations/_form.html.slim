@@ -1,0 +1,21 @@
+= form_for @collaboration do |f|
+  - if @collaboration.errors.any?
+    #error_explanation
+      h2
+        = pluralize(@collaboration.errors.count, "error")
+        | prohibited
+        | this collaboration from being saved:
+      ul
+        - @collaboration.errors.full_messages.each do |msg|
+          li= msg
+  p
+    = f.label 'Tipo'
+    = f.text_field :typology
+  p
+    = f.label 'Artista'
+    = f.select(:artist_id, @artists.collect {|p| [ p.name, p.id ] }, {:prompt => 'Seleziona artista'})
+  p
+    = f.label 'Opera'
+    = f.select(:artwork_id, @artworks.collect {|p| [ p.name, p.id ] }, {:prompt => 'Seleziona opera'})
+  p
+    = f.submit

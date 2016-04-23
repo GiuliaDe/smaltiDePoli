@@ -1,0 +1,15 @@
+.row
+  .col-md-2.menu-container
+    = render 'left_menu'
+  .col-md-10.artworks-container
+    p
+      strong Tipo:
+      = @collaboration.typology
+    p
+      strong Opera:
+      = @collaboration.artwork.name
+    p
+      strong Artista:
+      = @collaboration.artist.name
+    = link_to 'Indietro', collaborations_path
+    = link_to 'Modifica', edit_collaboration_path(@collaboration)

@@ -1,0 +1,7 @@
+ul
+  li= link_to 'Aggiungi nuova opera', new_artwork_path
+= form_tag(artworks_path, :method => "get" ) do
+  p
+    = text_field_tag :by_name, params[:by_name], placeholder: "Cerca nome"
+    = text_field_tag :by_dimension, params[:by_dimension], placeholder: "Cerca dimensione"
+    = submit_tag "Cerca", :name => nil
