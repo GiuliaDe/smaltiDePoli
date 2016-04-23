@@ -40,11 +40,11 @@
   </p>
   <p>
     <%= f.label 'Tipo' %>
-    <%= f.select(:typology, options_for_select(@available_typologies), include_blank: true) %>
+    <%= f.select(:typology, options_for_select(@available_typologies, :selected => @artwork.typology), include_blank: true) %>
   </p>
   <p>
     <%= f.label 'Tecnica' %>
-    <%= f.select(:technique, options_for_select(@available_techniques), include_blank: true) %>
+    <%= f.select(:technique, options_for_select(@available_techniques, :selected => @artwork.technique), include_blank: true) %>
   </p>
   <p>
     <%= f.label 'Link IUAV' %>

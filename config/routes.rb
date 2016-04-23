@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   # Example resource route (maps HTTP verbs to controller actions automatically):
    resources :artworks
    resources :artists
-
+   resources :collaborations
 
 end

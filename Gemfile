@@ -21,6 +21,10 @@ gem 'jc-validates_timeliness'
 #datepicker, to insert date
 gem 'bootstrap-datepicker-rails'
 
+group :development do
+  gem "better_errors"
+  gem "binding_of_caller"
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

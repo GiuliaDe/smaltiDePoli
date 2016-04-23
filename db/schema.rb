@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160409150305) do
+ActiveRecord::Schema.define(version: 20160416003108) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20160409150305) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "collaborations", id: false, force: :cascade do |t|
+  create_table "collaborations", force: :cascade do |t|
     t.integer "artwork_id"
     t.integer "artist_id"
     t.text    "typology"
@@ -49,6 +49,6 @@ ActiveRecord::Schema.define(version: 20160409150305) do
   add_index "collaborations", ["artist_id"], name: "index_collaborations_on_artist_id", using: :btree
   add_index "collaborations", ["artwork_id"], name: "index_collaborations_on_artwork_id", using: :btree
 
-  add_foreign_key "collaborations", "artists"
-  add_foreign_key "collaborations", "artworks"
+  add_foreign_key "collaborations", "artists", on_delete: :cascade
+  add_foreign_key "collaborations", "artworks", on_delete: :cascade
 end
