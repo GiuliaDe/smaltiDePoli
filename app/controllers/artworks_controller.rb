@@ -6,13 +6,18 @@ class ArtworksController < ApplicationController
 
 
 
-def index
-  @artworks = Artwork.filter(params.slice(:by_name, :by_dimension))
-
-end
+  def index
+    @artworks = Artwork.filter(params.slice(:by_name, :by_dimension))
+  end
 
   def show
     @artwork = Artwork.find(params[:id])
+    @collaborations_artists = @artwork.collaborations.map do |collaboration|
+      {
+        collaboration: collaboration,
+        artist: collaboration.artist
+      }
+    end
   end
 
 
@@ -22,7 +27,6 @@ end
 
   def edit
     @artwork = Artwork.find(params[:id])
-
   end
 
 
@@ -38,7 +42,7 @@ end
 
   def update
 
-      @artwork = Artwork.find(params[:id])
+    @artwork = Artwork.find(params[:id])
 
     if @artwork.update(artwork_params)
       redirect_to @artwork

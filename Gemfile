@@ -45,5 +45,8 @@ group :development, :test do
   #slim template for views
   gem 'slim-rails'
 
+  #css preprocessor
+  gem 'sass-rails'
+
 end
 

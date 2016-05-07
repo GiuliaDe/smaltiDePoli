@@ -37,5 +37,14 @@
     p
       strong Data esatta?
       = translate(@artwork.dateexact.class)
+    - unless @collaborations_artists.empty?
+      h2= 'Collaborazioni'
+      - @collaborations_artists.each do |collaboration_artist|
+        p
+          strong Artista
+          = collaboration_artist[:artist].name
+        p
+          strong Tipo
+          = collaboration_artist[:collaboration].typology
     = link_to 'Indietro', artworks_path
     = link_to 'Modifica', edit_artwork_path(@artwork)
