@@ -1,50 +1,57 @@
-.row
-  .col-md-2.menu-container
-    = render 'left_menu'
-  .col-md-10.artworks-container
-    p
-      strong Nome:
-      = @artwork.name
-    p
-      strong Dimensione:
-      = @artwork.dimension
-    p
-      strong Descrizione:
-      = @artwork.description
-    p
-      strong Note:
-      = @artwork.notes
-    p
-      strong Produzione?
-      = translate(@artwork.production.class)
-    p
-      strong Quantità
-      = @artwork.quantity
-    p
-      strong Tipo:
-      = @artwork.typology
-    p
-      strong Tecnica:
-      = @artwork.technique
-    p
-      strong Link IUAV
-      = @artwork.linkIUAV
-    p
-      strong Periodo: da
-      = @artwork.infdate.year
-      strong a
-      = @artwork.supdate.year
-    p
-      strong Data esatta?
-      = translate(@artwork.dateexact.class)
-    - unless @collaborations_artists.empty?
-      h2= 'Collaborazioni'
-      - @collaborations_artists.each do |collaboration_artist|
+.container
+  .row
+    .col-md-12
+      .page-header
+        h1= @artwork.name
+  .row
+    .col-md-8
+      p
+        strong Nome:
+        = @artwork.name
+      p
+        strong Dimensione:
+        = @artwork.dimension
+      p
+        strong Descrizione:
+        = @artwork.description
+      p
+        strong Note:
+        = @artwork.notes.present?
+      p
+        strong Produzione?
+        = translate(@artwork.production.class)
+      - unless @artwork.quantity.nil?
         p
-          strong Artista
-          = collaboration_artist[:artist].name
-        p
-          strong Tipo
-          = collaboration_artist[:collaboration].typology
-    = link_to 'Indietro', artworks_path
-
+          strong Quantità
+          = @artwork.quantity
+      p
+        strong Tipo:
+        = @artwork.typology
+      p
+        strong Tecnica:
+        = @artwork.technique
+      p
+        strong Link IUAV
+        = @artwork.linkIUAV
+      p
+        strong Periodo: da
+        = @artwork.infdate.year
+        strong a
+        = @artwork.supdate.year
+      p
+        strong Data esatta?
+        = translate(@artwork.dateexact.class)
+      - unless @collaborations_artists.empty?
+        h2= 'Collaborazioni'
+        - @collaborations_artists.each do |collaboration_artist|
+          p
+            strong Artista
+            = collaboration_artist[:artist].name
+          p
+            strong Tipo
+            = collaboration_artist[:collaboration].typology
+      / = link_to 'Indietro', artworks_path
+      a onclick="window.history.back();" style="cursor: pointer;"
+        | Indietro
+    .col-md-4
+      img src=("/assets/"+@artwork.notes)
