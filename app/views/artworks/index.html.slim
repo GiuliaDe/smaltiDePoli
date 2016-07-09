@@ -1,6 +1,7 @@
 .jumbotron#page-name
   .container
-    h1 Smalti
+    h1 L'arte dello smalto
+    h2 di Paolo de Poli
 .container
   .row
     .col-md-2
@@ -11,4 +12,4 @@
           .col-md-4
             = link_to artwork_path(artwork) do
               h2= artwork.name
-            p= artwork.dimension
+            img.img-responsive src=("/assets/"+artwork.notes)
