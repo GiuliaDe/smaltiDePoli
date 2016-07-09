@@ -7,7 +7,7 @@ class ArtworksController < ApplicationController
 
 
   def index
-    @artworks = Artwork.filter(params.slice(:by_name, :by_dimension))
+    @artworks = Artwork.filter(params.slice(:by_id, :by_name, :by_typology, :by_technique))
   end
 
   def show

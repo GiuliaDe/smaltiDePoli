@@ -1,6 +1,8 @@
 ul
 = form_tag(artworks_path, :method => "get" ) do
   p
-    = text_field_tag :by_name, params[:by_name], placeholder: "Cerca nome"
-    = text_field_tag :by_dimension, params[:by_dimension], placeholder: "Cerca dimensione"
+    = number_field_tag :by_id, params[:by_id], min: 1, placeholder: "Id"
+    = text_field_tag :by_name, params[:by_name], placeholder: "Nome"
+    = select_tag :by_typology, options_for_select(@available_typologies, selected: params[:by_typology]), prompt: "Tipologia"
+    = select_tag :by_technique, options_for_select(@available_techniques, selected: params[:by_technique]), prompt: "Tecnica"
     = submit_tag "Cerca", :name => nil

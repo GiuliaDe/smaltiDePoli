@@ -11,7 +11,9 @@ class Artwork < ActiveRecord::Base
   scope :last_modified_first, -> {order('updated_at DESC')}
 
   scope :by_name, ->(name) { where("name like ?", "%#{name}%")}
-  scope :by_dimension, ->(dimension) { where("dimension like ?", "%#{dimension}%") }
+  scope :by_typology, ->(typology) { where("typology = ?", "#{typology}") }
+  scope :by_technique, ->(technique) { where("technique = ?", "#{technique}") }
+  scope :by_id, ->(id) { where("id = ?", "#{id}") }
 
   has_many :artists, through: :collaborations
   has_many :collaborations
